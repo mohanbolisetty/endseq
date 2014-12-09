@@ -1,6 +1,6 @@
-#**Endseq**
+#**endseq**
 
-Endseq has three (currently only 2) modules. 
+endseq has three (currently only 2) modules. 
   
     usage: endseq [-h] [-v] {analysis,plots} ...
     
