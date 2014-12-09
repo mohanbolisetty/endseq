@@ -3,7 +3,7 @@ endseq
 
 ##**Pipeline for endseq analysis and plots**
 
-####**Instructions for installing endseq **
+####**Instructions for installing endseq**
 
 Update Python and base packages by downloading a python release from:
 http://continuum.io/downloads
