@@ -8,12 +8,13 @@ Instructions for installing endseq
 Update Python and base packages by downloading a python release from:
 http://continuum.io/downloads
 
-Once the installation is complete, download and install the following python modules by entering the following command in the terminal:
+Once the installation is complete, download and install the following python modules by entering the following 
+commands in the terminal:
 		sudo conda install numpy --upgrade
 		sudo conda install matplotlib --upgrade
 		sudo conda install pandas --upgrade
-	sudo conda install seaborn
-	sudo pip install brewer2mpl
+		sudo conda install seaborn
+		sudo pip install brewer2mpl
 	
 Installing HTSeq module on Mac OS X
 Install Xcode from the Mac App store to install llvm-gcc and llvm-g++
