@@ -1,9 +1,9 @@
 endseq
 ======
 
-Pipeline for endseq analysis and plots
+##**Pipeline for endseq analysis and plots**
 
-Instructions for installing endseq 
+####**Instructions for installing endseq **
 
 Update Python and base packages by downloading a python release from:
 http://continuum.io/downloads
@@ -26,7 +26,7 @@ After installing Xcode, install HTSeq by entering the following command:
 		sudo pip install HTSeq
 
 
-**git clone https://github.com/mohanbolisetty/endseq.git**
+**Dowload .zip folder from https://github.com/mohanbolisetty/endseq.git**
 
 In a terminal change directory to endseq download folder and enter the following command:
 
