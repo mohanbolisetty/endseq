@@ -17,9 +17,9 @@ commands:
 		sudo conda install seaborn
 		sudo pip install brewer2mpl
 	
-Installing HTSeq module on Mac OS X
-Install Xcode from the Mac App store to install llvm-gcc and llvm-g++
-You can check if these are installed by checking gcc --version in a terminal
+Installing HTSeq module on Mac OS X  
+Install Xcode from the Mac App store to install llvm-gcc and llvm-g++  
+You can check if these are installed by checking gcc --version in a terminal  
 
 After installing Xcode, install HTSeq by entering the following command:
 	
