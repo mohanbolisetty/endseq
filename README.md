@@ -26,7 +26,7 @@ After installing Xcode, install HTSeq by entering the following command:
 		sudo pip install HTSeq
 
 
-**Dowload .zip folder from https://github.com/mohanbolisetty/endseq.git**
+**git clone https://github.com/mohanbolisetty/endseq.git**
 
 In a terminal change directory to endseq download folder and enter the following command:
 
