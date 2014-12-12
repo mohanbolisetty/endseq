@@ -107,7 +107,7 @@ def analyze(r1,r2,adapter,alignlen,error,wsize,wthreshold,slen,sdist,output_dir)
                                                str(tb),
                                                str(tc),
                                                paired[0].seq[4:4+alignlen],
-                                               paired[0].qualstr[4:4+alignlen])
+                                               paired[0].qualstr()[4:4+alignlen])
             writeout.writelines(line)
     writeout.close()
     return tr,tad,out_file
