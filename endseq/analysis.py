@@ -102,12 +102,21 @@ def analyze(r1,r2,adapter,alignlen,error,wsize,wthreshold,slen,sdist,output_dir)
             ta=counting_strategies.counter(paired[1].seq[paired[1].seq.index(adapter)+len(adapter):],error)
             tb=counting_strategies.percent(paired[1].seq[paired[1].seq.index(adapter)+len(adapter):],wsize,wthreshold)
             tc=counting_strategies.strings(paired[1].seq[paired[1].seq.index(adapter)+len(adapter):],slen,sdist,adapter)
-            line='@%s_%s_%s_%s\n%s\n+\n%s\n' %(paired[1].name.split()[0],
-                                               str(ta),
-                                               str(tb),
-                                               str(tc),
-                                               paired[0].seq[4:4+alignlen],
-                                               paired[0].qualstr()[4:4+alignlen])
+            try:
+                line='@%s_%s_%s_%s\n%s\n+\n%s\n' %(paired[1].name.split()[0],
+                                                   str(ta),
+                                                   str(tb),
+                                                   str(tc),
+                                                   paired[0].seq[4:4+alignlen],
+                                                   paired[0].qualstr[4:4+alignlen])
+            except:
+                line='@%s_%s_%s_%s\n%s\n+\n%s\n' %(paired[1].name.split()[0],
+                                                   str(ta),
+                                                   str(tb),
+                                                   str(tc),
+                                                   paired[0].seq[4:4+alignlen],
+                                                   paired[0].qualstr()[4:4+alignlen])
+                
             writeout.writelines(line)
     writeout.close()
     return tr,tad,out_file
