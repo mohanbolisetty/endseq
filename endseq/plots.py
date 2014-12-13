@@ -182,41 +182,6 @@ def scattermatrix(tables):
     return fig        
 
 
-def ksstat(control,experimental):
-    return scipy.stats.ks_2samp(control,experimental)
-
-def ks(tables,metric,control):
-    metric='A_length_'+str(metric)
-    index=common_index(tables)
-    data=pd.DataFrame(index=index)
-    ks_data=pd.DataFrame(index=index)
-    for i in tables:
-        data[i[0]]=i[1].ix[index][[metric],['HIST']]
-
-    for column in data.columns:
-        ksstat='KS-Stat'+str(control)+str(column)
-        pval='Pvalue'+str(control)+str(column)
-        data[ksstat],data[pval]=zip(*data.apply(lambda x:ksstat(x[control],x[column]),axis=1))
-
-    return data        
-        
-def heatmap_ks(tables,metric):
-    data=ks(tables,metric)
-
-def control_sample(labels,control):
-    if control == '':
-        return labels[0]
-    else:
-        if control in labels:
-            return control
-        else:
-            print 'Control Label is not present in Labels revert to sample %s' %(options.label[0])
-            return label[0]    
-
-##def cluster(tables,sample):
-##    'test'
-##
-
 
 def run(parser,options):
     data=[]
@@ -224,7 +189,7 @@ def run(parser,options):
     for i in range(len(options.tables[0])):
         data.append((options.labels[0][i],
                        table(options.tables[0][i],
-                             'strings',
+                             options.metric,
                              options.counts,
                              options.max_length,
                              options.binsize)))
