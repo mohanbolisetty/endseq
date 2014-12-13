@@ -99,7 +99,8 @@ Required arguments:
       -c/--controlsample    Control sample label - needs to be one of the labels
       -o/--sort             Sort data by KS of this sample - needs to be one of the labels
 
-Optional arguments:
+Optional arguments:  
+
       -m/--metric		Choice:
                           counts (strategy1)
                           window (strategy2)
