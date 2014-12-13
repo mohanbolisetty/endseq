@@ -24,9 +24,17 @@ def run_subtool(parser, args):
                 parser.error('Single gene plot requires GENE ID')
             else:
                 args.counts=1
-        
         import plots as submodule
     elif args.command == 'stats':
+        if len(args.tables[0]) < 2:
+            parser.print_help()
+            parser.error('Requires atleast 2 data table.')
+        if len(args.labels[0]) < 2:
+            parser.print_help()
+            parser.error('Requires atleast 2 label.')
+        if len(args.tables[0]) != len(args.labels[0]):
+            parser.print_help()
+            parser.error('No. of tables and labels are not the same')        
         import stats as submodule
 
     submodule.run(parser, args)
@@ -132,6 +140,11 @@ def main():
                                        'Genewise',
                                        'ScatterMatrix',
                                        'SingleGene'])
+
+            #######################
+            # ADDITIONAL PARAMETERS
+            #######################
+
     parser_plots.add_argument('-m', '--metric', dest='metric',
                               help='A length metric ',
                               choices=['counts','window','strings'],
@@ -165,7 +178,17 @@ def main():
                               default=None)
 
     parser_stats.add_argument('-c','--controlsample',
-                              dest='control',help='Control sample')
+                              dest='control',help='Control sample',
+                              required=True)
+    parser_stats.add_argument('-o','--sort',dest='sort',
+                              help='Sort data by KS of this sample',
+                              required=True)    
+    
+
+            #######################
+            # ADDITIONAL PARAMETERS
+            #######################
+
     parser_stats.add_argument('-m', '--metric', dest='metric',
                               help='A length metric ',
                               choices=['counts','window','strings'],
@@ -181,8 +204,6 @@ def main():
                               help='Minimum KS Distance for plots',default=0.0,type=float)
     parser_stats.add_argument('-p','--pvalue',dest='pvalue',
                               help='P-value for significance',default=0.01,type=float)
-    parser_stats.add_argument('-o','--sort',dest='sort',
-                              help='Sort data by KS of this sample')    
     
     parser_stats.set_defaults(func=run_subtool)
 
