@@ -1,8 +1,8 @@
 #**endseq**
 
-endseq has three (currently only 2) modules. 
+endseq has three modules. 
   
-    usage: endseq [-h] [-v] {analysis,plots} ...
+    usage: endseq [-h] [-v] {analysis,plots,stats} ...
     
     optional arguments:
     -h, --help          show this help message and exit
@@ -12,6 +12,7 @@ endseq has three (currently only 2) modules.
     {analysis,plots}
       analysis        endseq Alignments and A-Tail counting
       plots          	  Plots for endseq analysis
+      stats             KS-Stat calculations
 
 
 ###**Analysis**
@@ -62,7 +63,7 @@ Additional arguments:
 Required arguments:
 
       -t /--tables 		Comma separated list of tables Table1,Table2,...,TableN
-      -l/--label		Comma separated list of labels Label1,Label2,...,LabelN
+      -l/--label		  Comma separated list of labels Label1,Label2,...,LabelN
       -p/--plottype		Choice: 
                             KDE,
                             CDF,
@@ -86,3 +87,28 @@ Optional arguments:
       -i/--geneid		Gene ID for Single Gene plots
 
 ###**Stats**
+      usage: endseq stats [-h] [-q] -t [TABLES [TABLES ...]] -l
+                        [LABELS [LABELS ...]] -c CONTROL -o SORT
+                        [-m {counts,window,strings}] [-a MAX_LENGTH] [-s BINSIZE]
+                        [-r COUNTS] [-d MINKS] [-p PVALUE]
+
+Required arguments:  
+
+      -t/--tables           Comma seperated list of analysis_tables
+      -l/--labels           Comma seperated list of lables
+      -c/--controlsample    Control sample label - needs to be one of the labels
+      -o/--sort             Sort data by KS of this sample - needs to be one of the labels
+
+Optional arguments:
+      -m/--metric		Choice:
+                          counts (strategy1)
+                          window (strategy2)
+                          default=strings (strategy3) 
+
+      -a/--max_length	    Max length of A-tail, default=200 
+      -s/--binsize  		  Binsize, default=1 - change to 5 for Heatmap
+      -r/--readsthreshold	Minimum read counts, default=30
+      -d/--minksdistance  Minimum KS distance, default=0.0 - data masked below this value
+      -p/--pvalue         P-value for significance, default=0.01 - data masked above this value
+
+
