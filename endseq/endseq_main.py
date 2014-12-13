@@ -143,12 +143,48 @@ def main():
                               help='Size of Bins',default=1,type=int)
     parser_plots.add_argument('-r','--readsthreshold',dest='counts',
                               help='Min read counts',default=30,type=int)
-    parser_plots.add_argument('-c','--controlsample',
-                              dest='control',help='Control sample')
     parser_plots.add_argument('-i','--geneid',
                               dest='geneid',help='Gene ID',
                               default=None)
     parser_plots.set_defaults(func=run_subtool)
+
+
+    ###########
+    # STATS
+    ###########
+
+    parser_stats=subparsers.add_parser('stats',
+                                          help='Plots for endseq analysis')
+    parser_stats.add_argument('-t', '--tables', dest='tables',
+                              help='Comma seperated list of analysis_tables',
+                              required=True, nargs='*',type=csv,
+                              default=None)
+    parser_stats.add_argument('-l', '--label', dest='labels',
+                              help='Comma seperated list of lables ',
+                              required=True, nargs='*',type=csv,
+                              default=None)
+
+    parser_stats.add_argument('-c','--controlsample',
+                              dest='control',help='Control sample')
+    parser_stats.add_argument('-m', '--metric', dest='metric',
+                              help='A length metric ',
+                              choices=['counts','window','strings'],
+                              default='strings')
+    parser_stats.add_argument('-a', '--max_length',dest='max_length',
+                              help='Max length of A tail',
+                              default=200,type=int)
+    parser_stats.add_argument('-s','--binsize',dest='binsize',
+                              help='Size of Bins',default=5,type=int)
+    parser_stats.add_argument('-r','--readsthreshold',dest='counts',
+                              help='Min read counts',default=30,type=int)
+    parser_stats.add_argument('-d','--minksdistance',dest='minks',
+                              help='Minimum KS Distance for plots',default=0.0,type=float)
+    parser_stats.add_argument('-p','--pvalue',dest='pvalue',
+                              help='P-value for significance',default=0.01,type=float)
+    parser_stats.add_argument('-o','--sort',dest='sort',
+                              help='Sort data by KS of this sample')    
+    
+    parser_stats.set_defaults(func=run_subtool)
 
     args = parser.parse_args()        
     args.func(parser,args)
