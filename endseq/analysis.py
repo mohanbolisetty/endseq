@@ -62,7 +62,7 @@ class counting_strategies:
             t_list.append(len(seq))
             delta_list=[t_list[i+1]-t_list[i] for i in range(len(t_list)-1)]
             if max(delta_list)<=distance:
-                return delta_list[-1]+adapter.count('T')
+                return t_list[-1]+adapter.count('T')
             else:
                 for i in range(len(delta_list)):
                     if delta_list[i]>=distance:
