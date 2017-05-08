@@ -1,4 +1,4 @@
-#**endseq**
+# **endseq**
 
 endseq has three modules. 
   
@@ -15,7 +15,7 @@ endseq has three modules.
       stats             KS-Stat calculations
 
 
-###**Analysis**
+### **Analysis**
 
 Analysis is the primary module that processes:
 
@@ -51,7 +51,7 @@ Additional arguments:
       -s			String size - counting strategy 3, default =’TTTTT’
       -d			Max distance between strings - counting strategy 3, default =20
 
-###**Plots**
+### **Plots**
 
       usage:
       endseq plots [-h] [-q] -t [TABLES [TABLE1,TABLE2,...,TABLEN]] -l
@@ -86,7 +86,7 @@ Optional arguments:
       -c/--controlsample	Control Sample label, default=first label from labels
       -i/--geneid		Gene ID for Single Gene plots
 
-###**Stats**
+### **Stats**
       usage: endseq stats [-h] [-q] -t [TABLES [TABLES ...]] -l
                         [LABELS [LABELS ...]] -c CONTROL -o SORT
                         [-m {counts,window,strings}] [-a MAX_LENGTH] [-s BINSIZE]
