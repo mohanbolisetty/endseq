@@ -23,7 +23,7 @@ def binning(maxlength,size):
     return bins
 
 def table(filein,metric,counts,maxlength,size):
-    table = pd.io.parsers.read_table(filein,index_col=0)
+    table = pd.read_table(filein,index_col=0)
     metric='A_length_'+str(metric)
     table[metric]=table[metric].str.split(',').apply(np.asarray,dtype=int)    
     index=table['No.Aligned_Reads'].where(table['No.Aligned_Reads']>=counts).dropna().index
@@ -90,12 +90,12 @@ def control_sample(labels,control):
         
 def sort_on_ks(tables,control,sort_sample):
     column='KS-Stat'+str(control)+str(sort_sample)
-    tables.sort([column],ascending=True,inplace=True)
+    tables.sort_values([column],ascending=True,inplace=True)
     return tables
 
 def run(parser,options):
     data=[]
-
+    print options.tables[0]
     for i in range(len(options.tables[0])):
         data.append((options.labels[0][i],
                        table(options.tables[0][i],
@@ -106,6 +106,7 @@ def run(parser,options):
     control=control_sample(options.labels[0],options.control)
     ksdata=ks(data,options.metric,control,options.minks,options.pvalue)
     sortdata=sort_on_ks(ksdata,control,options.sort)
+    sortdata.to_csv('KS-Table.csv')
 
     fig_pdf=PdfPages('%s.pdf' %('KS_heatmap'))
     fig=heatmap(sortdata,
