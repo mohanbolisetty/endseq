@@ -51,7 +51,7 @@ def cumulative_plots(tables,plottype,metric):
     return fig
     
 def table(filein,metric,counts,maxlength,size):
-    table = pd.io.parsers.read_table(filein,index_col=0)
+    table = pd.read_table(filein,index_col=0)
     metric='A_length_'+str(metric)
     table[metric]=table[metric].str.split(',').apply(np.asarray,dtype=int)
     
